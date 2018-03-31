@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script  type = "text/javascript" src=" /assets/js/jquery.min.js" ></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        a{text-decoration:none;}
+        li{
+            list-style-type:none;
+        }
+        .regBox{
+            width: 300px;
+            height: 300px;
+            border: 1px solid #888888;
+            box-shadow: 2px 2px 5px #888888;
+            position: absolute;
+            left: 70%;
+            top: 10%;
+        }
+        .regBox h3{
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+        }
+        .inputBox{
+            width: 300px;
+            height: 50px;
+            margin-left: 0;
+            text-align: center;
+        }
+        .username{
+            margin-top: 50px;
+        }
+        .regBtn input{
+            width: 160px;
+            height: 40px;
+            border: 0;
+            color: #ffffff;
+            font-size: 20px;
+            background: #ff9900;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="regBox">
+    <div class="inputBox username">
+             邮箱&nbsp;  名：<input type="text" id = "email" name = "email" />
+    </div>
+  
+    <div class="inputBox regBtn">
+        <input type="button" value="下一步" onclick = "login()" />
+    </div>
+</div>
+</body>
+        <script type="text/javascript">
+        function login(){
+			var p={
+					"email": $("#email").val(),
+					
+				}
+			$.ajax({
+				url: "/user/send.do",
+				type:'post',
+				dataType:'json',
+				data:JSON.stringify(p),
+				contentType: "application/json;charset=UTF-8",
+				success:function(data){	
+				
+				       alert("发送成功");
+			  		
+			          },
+			          error:function(){
+			        	 alert('添加失败')   
+			        			
+			             }
+				
+			});
+			
+		}
+        
+        
+        </script>
+
+
+</html>

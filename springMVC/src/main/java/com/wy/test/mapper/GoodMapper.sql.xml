@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wy.test.mapper.GoodMapper">
+  
+  <insert id="insert"
+		parameterType="com.wy.test.dao.GoodRequest">
+		<![CDATA[
+		INSERT INTO goods (
+			name,
+			price,
+			inventory,
+			url
+		)
+		VALUES
+			( #{goodName},#{price},#{inventory},#{url})
+	]]>
+	</insert>
+	
+	
+	
+	<select id="selectOneById" resultType="com.wy.test.dao.GoodInfo" parameterType="com.wy.test.dao.UUIDBaseEntity">
+	<![CDATA[
+		SELECT
+			*
+		FROM
+			goods As c
+		
+		WHERE
+			c.id = #{id}
+	]]>
+	</select>
+	
+	<update id="update"
+		parameterType="com.wy.test.dao.UpdateGood">
+	     <![CDATA[
+		UPDATE goods
+		SET 
+		    name = #{goodName},
+		    price = #{price},
+		    inventory = #{inventory},
+		    url = #{url}
+		WHERE
+		    id = #{id}
+	 ]]>
+	
+	</update>
+	
+    <select id="slectGoodNum" resultType="int">
+	<![CDATA[
+	     SELECT
+			COUNT(0)
+		FROM goods
+		
+	]]>
+	</select>
+	
+	<select id="serlectAllGoods"
+		parameterType="com.wy.test.dao.PageBaseRequest"
+		resultType="com.wy.test.dao.GoodInfo">
+	<![CDATA[
+		SELECT * FROM goods LIMIT ${(pageIndex-1)*pageSize},${pageSize};
+	]]>
+	
+	</select>
+	
+	<update id="updateGoodNum"
+		parameterType="com.wy.test.dao.UpdateGoodNum">
+	     <![CDATA[
+		UPDATE goods
+		SET 
+		  inventory = #{num}
+		 WHERE
+		    id = #{id}
+	 ]]>
+	
+	</update>
+
+</mapper>

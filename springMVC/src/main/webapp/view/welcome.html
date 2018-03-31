@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        a{text-decoration:none;}
+        li{
+            list-style-type:none;
+        }
+        .s_header{
+            width: 100%;
+            max-width: 1190px;
+            height: 100px;
+            background: #eee;
+            margin: 0 auto;
+        }
+        .s_header p{
+            float: left;
+            height: 100px;
+            line-height: 100px;
+        }
+        .s_header span{
+            cursor: pointer;
+            color: #ff9900;
+        }
+        .s_container{
+            width: 100%;
+            max-width: 1190px;
+            height: 600px;
+            background: #cccccc;
+            margin: 0 auto;
+            position: relative;
+        }
+        .s_container a{
+            display: block;
+            width: 200px;
+            height: 40px;
+            line-height: 40px;
+            border: 1px solid red;
+            border-radius: 3px;
+            text-align: center;
+        }
+        .s_container a.addOrder{
+            position: absolute;
+            border: 1px solid #09f;
+            color: #0099ff;
+            background: #ffffff;
+            top: 200px;
+            left: 300px;
+        }
+        .s_container a.listOrder{
+            position: absolute;
+            border: 1px solid #ff9900;
+            color: #ff9900;
+            background: #ffffff;
+            top: 200px;
+            left:700px;
+        }
+    </style>
+</head>
+<body>
+<div class="s_header">
+    <p>welcome,<span>username</span>!</p>
+</div>
+<div class="s_container">
+    <a href="/view/addOrder.html" class="addOrder">新增订单</a>
+    <a href="/view/listOrder.html" class="listOrder">订单列表</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wy.test.mapper.OrderMapper">
+  
+  <insert id="createOrder"
+		parameterType="com.wy.test.dao.CreateOrderRequst">
+		<![CDATA[
+		INSERT INTO orders (
+			good_id,
+			user_id,
+			num,
+		    totalPrice,
+		    orderNo
+		)
+		VALUES
+			( #{goodId},#{userId},#{num},#{totalPrice},#{orderNo})
+	]]>
+	</insert>
+	
+	<select id="slectOrderNum" resultType="int" parameterType="com.wy.test.dao.SelectOrderRequest"> 
+	<![CDATA[
+	     SELECT COUNT(o.id) FROM users AS us
+         LEFT JOIN orders AS o ON us.id = o.user_id
+         LEFT JOIN goods AS g ON o.good_id = g.id
+         WHERE us.id = #{id}
+		]]>
+	</select>
+	
+	
+	<select id="serlectAllOrder"
+		parameterType="com.wy.test.dao.SelectOrderRequest"
+		resultType="com.wy.test.dao.OrederResult">
+	<![CDATA[
+		SELECT 
+             o.id,
+             o.num,
+             o.totalPrice,
+             o.orderNo,
+             g.url,
+             g.`name`,
+             g.price
+        FROM users AS us
+        LEFT JOIN orders AS o ON us.id = o.user_id
+        LEFT JOIN goods AS g ON o.good_id = g.id
+        WHERE us.id = #{id}
+	    LIMIT ${(pageIndex-1)*pageSize},${pageSize};
+	]]>
+	</select>
+	
+	
+	<delete id="delete"
+		parameterType="com.wy.test.dao.UUIDBaseEntity" >
+	<![CDATA[
+	DELETE FROM  orders
+	      WHERE
+	       id = #{id}
+	     ]]>
+	</delete>
+	
+</mapper>

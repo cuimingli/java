@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/assets/css/common.css" />
+<link rel="stylesheet" href="/assets/css/home.css" />
+<link rel="stylesheet" href="/assets/css/bootstrap-table.css" />
+<script  type = "text/javascript" src=" /assets/js/jquery.min.js" ></script>
+<script src="/assets/js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap-table-zh-CN.js"></script>
+<script type="text/javascript" src="/assets/js/addGood.js"></script>
+
+</head>
+<style type="text/css">
+	.js_uploadBox{
+		position: relative;
+	}
+	/*.js_showBox{*/
+		/*position: absolute;*/
+		/*left: 177px;*/
+		/*top: 25px;*/
+	/*}*/
+	.js_showBox img{position: relative;left: -15px;}
+</style>
+<body>
+
+
+	<ul class="breadcrumb">
+		<li>
+			<a href="">页面管理</a>
+			<span class="divider"></span>
+		</li>
+		<li class="active"></li>
+	</ul>
+	<div class="if-wrap">
+		<div class="add-btn">
+			<div class="btns-group">
+				<a class="btn btn-success" onclick="addGoods()">
+					<span class="glyphicon glyphicon-plus"> </span>
+					添加商品
+				</a>
+				<a href ="/view/listOrder.html">我的订单</a>
+				<a href ="/view/email.html">邮箱注册</a>
+			</div>
+		</div>
+		<table id="cateTable"></table>
+
+		<!-- 产品新增的模特框-->
+		<div class="modal" id="addCate">
+			<div class="modal-header">
+				<a class="close" data-dismiss="modal">×</a>
+				<h3>添加商品</h3>
+			</div>
+			<div class="modal-body">
+				<form action="" class="form-horizontal" enctype="multipart/form-data">
+					<div class="form-group">
+						<label class="col-md-3 control-label">
+							<i class="color-orange">* </i>
+							商品：
+						</label>
+						<div class="col-md-4" class="btn-upload">
+							<input type="text" class="form-control" id="name" placeholder="6个字以内，建议4个字" />
+						</div>
+						
+					</div>
+					<div class="form-group control-group js_uploadBox">
+						<label class="col-md-3 control-label" for="h2">
+							<i class="color-orange">* </i>
+							商品图片：
+						</label>
+						<div class="col-md-4 btn-upload">
+							<a href="javascript:void(0);" style="display: inline-block;position: absolute;left: 15px;">
+								<i class="icon-upload"></i>
+								<span class="js_uploadText">上传</span>
+								商品
+							</a>
+							<input class="form-control js_upFile" type="file" id="image" name="image" onchange="uploadFile()"/>
+						</div>
+						<div class="col-md-4 js_showBox ">
+							<img class="js_logoBox" src="" width="180px" height="100px"  >
+						</div>
+					</div>
+					  <input type="hidden"   id="url" class="form-control" />
+					<div>
+					<label class="col-md-3 control-label" for="h2">
+							<i class="color-orange">* </i>
+							商品价格：
+						
+					</label>
+					<div class="col-md-4" class="btn-upload">
+					<input type="text" class="form-control" id="price"/>
+					</div>
+					</div>
+					<div>
+					<label class="col-md-3 control-label" for="h2">
+							<i class="color-orange">* </i>
+							商品库存：
+						
+					</label>
+					<div class="col-md-4" class="btn-upload">
+					<input type="text" class="form-control" id="inv" />
+					</div>
+					</div>
+					
+					
+					
+					
+				</form>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">取消</a>
+				<a href="#" class="btn btn-primary ensure" onclick="addGood()">确认</a>
+			</div>
+		</div>
+		<!--编辑的模态框-->
+		<div class="modal" id="myModalEdit">
+			<div class="modal-header">
+				<a class="close" data-dismiss="modal">×</a>
+				<h3>编辑分类</h3>
+			</div>
+			<div class="modal-body">
+				<form action="" class="form-horizontal" enctype="multipart/form-data">
+
+					<div>
+						<span style="display: none;">ID:</span>
+						<input type="text" style="display: none;" class="popout-input" id="eid" name=" " value="" />
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label">
+							<i class="color-orange">* </i>
+							分类名称：
+						</label>
+						<div class="col-md-4" class="btn-upload">
+							<input type="text" class="form-control" id="edname" placeholder="6个字以内，建议4个字" />
+						</div>
+						<span id="nameEd">
+							<font color=#FF0000>请输入分类名</font>
+						</span>
+					</div>
+					<div class="form-group control-group js_uploadBox">
+						<label class="col-md-3 control-label" for="h2">
+							<i class="color-orange">* </i>
+							商品图片：
+						</label>
+						<div class="col-md-4 btn-upload">
+							<a href="javascript:void(0);" style="display: inline-block;position: absolute;left: 15px;">
+								<i class="icon-upload"></i>
+								<span class="js_uploadText">上传</span>
+								商品
+							</a>
+							<input class="form-control js_upFile" type="file" id="edimage" name="edimage" />
+						</div>
+						<div class="col-md-4 js_showBox ">
+							<!--<img class="js_logoBox" src="" width="180px" height="144px" >-->
+						</div>
+					</div>
+					<span id="imageEd">
+						<font color=#FF0000>请选择图片</font>
+					</span>
+
+				</form>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">取消</a>
+				<a href="#" class="btn btn-primary" onclick="editCategory()">确认</a>
+			</div>
+		</div>
+	</div>
+	<script>
+		function btn_invalid(){
+//			console.log($('.s_last').eq(0));
+			$('.s_last').first().css({'color':'#ddd'}).attr('onclick','').removeAttr('href');
+			$('.s_top').first().css({'color':'#ddd'}).attr('onclick','').removeAttr('href');
+			$('.s_next').last().css({'color':'#ddd'}).attr('onclick','').removeAttr('href');
+			$('.s_bottom').last().css({'color':'#ddd'}).attr('onclick','').removeAttr('href');
+		}
+		setInterval(btn_invalid,100);
+		setTimeout(function(){
+			$('.s_delete').css({'cursor':'pointer'})
+		},100)
+	</script>
+</body>
+</html>

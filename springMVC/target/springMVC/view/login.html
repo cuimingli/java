@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script  type = "text/javascript" src=" /assets/js/jquery.min.js" ></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        a{text-decoration:none;}
+        li{
+            list-style-type:none;
+        }
+        .regBox{
+            width: 300px;
+            height: 300px;
+            border: 1px solid #888888;
+            box-shadow: 2px 2px 5px #888888;
+            position: absolute;
+            left: 70%;
+            top: 10%;
+        }
+        .regBox h3{
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+        }
+        .inputBox{
+            width: 300px;
+            height: 50px;
+            margin-left: 0;
+            text-align: center;
+        }
+        .username{
+            margin-top: 50px;
+        }
+        .regBtn input{
+            width: 160px;
+            height: 40px;
+            border: 0;
+            color: #ffffff;
+            font-size: 20px;
+            background: #ff9900;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="regBox">
+  <form id="loginFrom">
+    <div class="inputBox username">
+        用&nbsp; 户&nbsp; 名：<input type="text" id = "username" name = "username" />
+    </div>
+    <div class="inputBox pwd">
+        密　　码：<input type="password" id ="password" name = "password" />
+    </div>
+    <div class="inputBox regBtn">
+        <button id="loginbtn">登录</button>
+    </div>
+  </form>
+</div>
+</body>
+        <script type="text/javascript">
+        $('#loginbtn').click(function() {
+			 var p={
+					"username": $("#username").val(),
+					"password": $("#password").val(),
+				}
+			$.ajax({
+				url: "/login.aspx",
+				type:'POST',
+			    data:p,
+			    async : true,	
+				success:function(data){	
+					alert('成功')
+					
+			      },	
+			          error:function(){
+			        	 alert('添加失败')   
+			        }
+				
+			});
+			
+			
+			
+		})
+       </script>
+
+
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wy.test.mapper.UserMapper">
+  
+  <insert id="insert"
+		parameterType="com.wy.test.dao.UserRequest">
+		<![CDATA[
+		INSERT INTO users (
+			userName,
+			passWord
+		)
+		VALUES
+			( #{username},#{password})
+	]]>
+	</insert>
+	
+	<select id="select" parameterType="com.wy.test.dao.UserRequest" resultType = "com.wy.test.dao.UserResult">
+	<![CDATA[
+	        SELECT
+			*
+		FROM users AS u
+		WHERE
+		u.userName = #{userName}
+		AND
+		u.passWord = #{passWord}
+	]]>
+	</select>
+	
+	<select id="selectByName" parameterType="String" resultType = "com.wy.test.dao.UserResult" >
+	<![CDATA[
+	        SELECT
+			*
+		FROM users AS u
+		WHERE
+		u.userName = #{name}
+		
+	]]>
+	</select>
+	
+	
+	<select id="selectByUserCode" parameterType="String" resultType = "com.wy.test.dao.UserResult" >
+	<![CDATA[
+	        SELECT
+			*
+		FROM users AS u
+		WHERE
+		u.userName = #{userCode}
+		
+	]]>
+	</select>
+	
+</mapper>

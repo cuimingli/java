@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<beans xmlns="http://www.springframework.org/schema/beans"    
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"    
+    xmlns:context="http://www.springframework.org/schema/context"    
+    xmlns:mvc="http://www.springframework.org/schema/mvc" 
+    xmlns:util="http://www.springframework.org/schema/util"   
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd      
+                        http://www.springframework.org/schema/context      
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd      
+                        http://www.springframework.org/schema/mvc      
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                        http://www.springframework.org/schema/util
+						http://www.springframework.org/schema/util/spring-util-2.5.xsd">    
+                            
+    <!--避免IE执行AJAX时，返回JSON出现下载文件 -->    
+    <bean id="mappingJacksonHttpMessageConverter"    
+        class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">    
+        <property name="supportedMediaTypes">    
+            <list>    
+                <value>text/html;charset=UTF-8</value>    
+            </list>    
+        </property>    
+    </bean>    
+        
+     <!-- 添加注解驱动 -->      
+    <mvc:annotation-driven />  
+   <mvc:default-servlet-handler/> 
+        
+    <!-- 设置使用注解的类所在的包 -->    
+    <context:component-scan base-package="com.wy.test.controller" />    
+        
+   
+    
+       <!-- 处理器映射器：该映射器根据URL来匹配bean的name，映射器都实现了接口HandlerMapping -->  
+     <bean  
+        class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />  
+  
+    <!-- 处理器适配器：适配器都实现了HandlerAdapter，action按照适配器要求开发，规则是实现Controller -->  
+    <bean  
+        class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">  
+        <!-- JSON转换器 -->  
+        <property name="messageConverters">  
+            <list>  
+                <bean  
+                    class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />  
+            </list>  
+        </property>  
+    </bean>  
+  
+    
+      
+        
+    <!-- 定义跳转的文件的前后缀 ，视图模式配置-->    
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">    
+        <!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->    
+        <property name="prefix" value="/WEB-INF/jsp/" />    
+        <property name="suffix" value=".html" />    
+    </bean>    
+    
+    
+    <!-- Exception Resolver -->
+	<bean id="UXUQAxbg"
+		class="com.wy.tests.util.MethodValidationExceptionResolver">
+		<property name="order">
+			<util:constant static-field="org.springframework.core.Ordered.HIGHEST_PRECEDENCE" />
+		</property>
+	</bean>
+
+	<bean id="hDTJYMQa"
+		class="org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver">
+		<property name="order">
+			<util:constant static-field="org.springframework.core.Ordered.LOWEST_PRECEDENCE" />
+		</property>
+	</bean>
+    
+    
+        
+    <!-- SpringMVC上传文件时，需要配置MultipartResolver处理器-->    
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">      
+        <!-- 默认编码 -->    
+        <property name="defaultEncoding" value="utf-8" />      
+        <!-- 文件大小最大值 -->    
+        <property name="maxUploadSize" value="10485760000" />      
+        <!-- 内存中的最大值 -->    
+        <property name="maxInMemorySize" value="40960" />      
+    </bean>     
+    
+</beans>    

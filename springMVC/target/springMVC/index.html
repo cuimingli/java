@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script  type = "text/javascript" src=" /assets/js/jquery.min.js" ></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        a{text-decoration:none;}
+        li{
+            list-style-type:none;
+        }
+        .s_header{
+            width: 100%;
+            max-width: 1190px;
+            height: 100px;
+            background: #333;
+            margin: 0 auto;
+        }
+        .s_header ul li{
+            float: left;
+            height: 50px;
+        }
+        .s_header ul li a{
+            display: block;
+            width: 100px;
+            height: 80px;
+            margin-top: 10px;
+            cursor: pointer;
+            border: 0;
+            background: #fff;
+            margin-left: 10px;
+            color: #333;
+            text-align: center;
+            line-height: 80px;
+        }
+        .s_header ul li a:hover{
+            background:#f90;
+        }
+        .s_container{
+            width: 100%;
+            max-width: 1190px;
+            height: 600px;
+            background: #cccccc;
+            margin: 0 auto;
+        }
+        .s_goods{
+            width: 100%;
+            height: 500px;
+        }
+        .s_goodsLeft{
+            width: 300px;
+            height: 350px;
+            background: red;
+            float: left;
+            margin-left: 200px;
+            margin-top: 50px;
+        }
+        .s_goodsRight{
+            width: 300px;
+            height: 350px;
+            background: red;
+            float: left;
+            margin-left: 200px;
+            margin-top: 50px;
+        }
+        .imgBox{
+            width: 100%;
+            height: 300px;
+            background: #ffffff;
+            border: 1px solid #dddddd;
+        }
+        .s_goods p{
+            width: 300px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="s_header">
+    <ul>
+        <li>
+            <a href="/view/login.html">登录</a>
+        </li>
+        <li>
+            <a href="/view/reg.html">注册</a>
+        </li>
+    </ul>
+</div>
+<div class="s_container">
+    <div class="s_goods">
+        <div class="s_goodsLeft">
+            <div class="imgBox">
+                <img src="" alt="">
+            </div>
+            <p>这是商品1</p>
+        </div>
+        <div class="s_goodsRight">
+            <div class="imgBox">
+                <img src="" alt="">
+            </div>
+            <p>这是商品2</p>
+        </div>
+    </div>
+</div>
+<div class="s_footer"></div>
+</body>
+</html>

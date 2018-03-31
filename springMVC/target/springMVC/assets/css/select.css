@@ -1,0 +1,40 @@
+.s_selectBox{
+    position: relative;
+    display: inline-block;
+}
+.s_selectBox>img{
+    position: absolute;
+    bottom: 2px;
+    right: 8px;
+}
+.s_selectBox>.s_optionBox{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    border: 1px solid #dde2eb;
+    left: 0;
+    top: 38px;
+    border-radius: 4px;
+    z-index: 999;
+    padding: 5px 0;
+    background: #fff;
+}
+.s_optionBox ul li{
+    height: 30px;
+    line-height: 30px;
+    text-indent: 10px;
+}
+.s_optionBox ul li:hover{
+    background:#f2f4f7;
+    /*color: #fff;*/
+}
+
+
+.s_popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+}
+
